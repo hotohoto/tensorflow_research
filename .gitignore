@@ -1,3 +1,5 @@
 bak
-venv
 test.py
+.idea
+venv
+*.csv
