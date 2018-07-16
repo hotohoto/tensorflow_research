@@ -1,0 +1,19 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+tensorflow = "*"
+pillow = "*"
+numpy = "*"
+kivy = "*"
+"h5py" = "*"
+jupyter = "*"
+
+[dev-packages]
+pylint = "*"
+rope = "*"
+
+[requires]
+python_version = "3.6"
