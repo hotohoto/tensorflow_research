@@ -5,15 +5,14 @@ name = "pypi"
 
 [packages]
 tensorflow = "*"
-pillow = "*"
 numpy = "*"
 kivy = "*"
+pillow = "*"
 "h5py" = "*"
-jupyter = "*"
 
 [dev-packages]
+jupyter = "*"
 pylint = "*"
-rope = "*"
 
 [requires]
 python_version = "3.6"
