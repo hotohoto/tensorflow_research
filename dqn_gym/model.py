@@ -7,17 +7,16 @@ class DQN:
     LEARNING_RATE = 0.001
     REPLAY_MEMORY = 50000
     BATCH_SIZE = 64
-    GAMMA = 0.9
-    STATE_FRAME_LEN = 4
+    GAMMA = 0.99
 
     def __init__(self, session, size, n_action):
         self.session = session
-        self.n_action = n_action
         self.size = size
+        self.n_action = n_action
         self.memory = deque()
         self.state = None
 
-        self.input_X = tf.placeholder(tf.float32, [None, size, self.STATE_FRAME_LEN])
+        self.input_X = tf.placeholder(tf.float32, [None, size])
         self.input_A = tf.placeholder(tf.int64, [None])
         self.input_Y = tf.placeholder(tf.float32, [None])
 
@@ -60,12 +59,9 @@ class DQN:
         return action
 
     def init_state(self, state):
-        state = [state for _ in range(self.STATE_FRAME_LEN)]
-        self.state = np.stack(state, axis=-1)
+        self.state = state
 
-    def remember(self, state, action, reward, done):
-        next_state = np.reshape(state, (self.size, 1))
-        next_state = np.append(self.state[:, 1:], next_state, axis=1)
+    def remember(self, next_state, action, reward, done):
 
         self.memory.append((self.state, next_state, action, reward, done))
 
