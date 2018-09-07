@@ -56,7 +56,7 @@ def train():
 
                 if time_step > 0:
                     if time_step % TRAIN_INTERVAL_FRAMES == 0:
-                        brain.train()
+                        _, loss = brain.train()
                     if time_step % TARGET_UPDATE_INTERVAL == 0:
                         brain.update_target_network()
 

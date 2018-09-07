@@ -71,7 +71,7 @@ class DQN:
         self.state = next_state
 
     def _sample_memory(self):
-        sample_memory = random.sample(self.memory, self.BATCH_SIZE)
+        sample_memory = random.sample(self.memory, min(self.BATCH_SIZE, len(self.memory)))
 
         state = [memory[0] for memory in sample_memory]
         next_state = [memory[1] for memory in sample_memory]
@@ -87,15 +87,16 @@ class DQN:
         target_Q_value = self.session.run(self.target_Q, feed_dict={self.input_X: next_state})
 
         Y = []
-        for i in range(self.BATCH_SIZE):
+        for i in range(min(self.BATCH_SIZE, len(self.memory))):
             if done[i]:
                 Y.append(reward[i])
             else:
                 Y.append(reward[i] + self.GAMMA * np.max(target_Q_value[i]))
 
-        self.session.run(self.train_op,
+        return self.session.run([self.train_op, self.cost],
                          feed_dict={
                              self.input_X: state,
                              self.input_A: action,
                              self.input_Y: Y
                          })
+        
