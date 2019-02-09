@@ -4,3 +4,4 @@ bak
 venv
 *.csv
 test
+.vscode
