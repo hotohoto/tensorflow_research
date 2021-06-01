@@ -22,6 +22,6 @@ tensorboard==1.9.0
 tensorflow==2.4.0
 termcolor==1.1.0
 typed-ast==1.1.0
-urllib3==1.23
+urllib3==1.26.5
 Werkzeug==0.15.3
 wrapt==1.10.11
